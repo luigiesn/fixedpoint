@@ -48,14 +48,14 @@ typedef int32_t lfixed;
 #if FP_TOTAL_LENGTH == 8
 typedef uint8_t fixed;
 typedef uint16_t lfixed;
-#define FIXED_MAX  0xff
-#define FIXED_MIN  0x00
+#define FIXED_MAX  ((fixed)0xff)
+#define FIXED_MIN  ((fixed)0x00)
 
 #elif FP_TOTAL_LENGTH == 16
 typedef uint16_t fixed;
 typedef uint32_t lfixed;
-#define FIXED_MAX  0xffff
-#define FIXED_MIN  0x0000
+#define FIXED_MAX  ((fixed)0xffff)
+#define FIXED_MIN  ((fixed)0x0000)
 #endif
 
 #endif
