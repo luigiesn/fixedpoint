@@ -34,14 +34,14 @@ typedef unsigned long uint32_t;
 #if FP_TOTAL_LENGTH == 8
 typedef int8_t fixed;
 typedef int16_t lfixed;
-#define FIXED_MAX  0xff
-#define FIXED_MIN  0x80
+#define FIXED_MAX  ((fixed)0xff)
+#define FIXED_MIN  ((fixed)0x80)
 
 #elif FP_TOTAL_LENGTH == 16
 typedef int16_t fixed;
 typedef int32_t lfixed;
-#define FIXED_MAX  0xffff
-#define FIXED_MIN  0x8000
+#define FIXED_MAX  ((fixed)0xffff)
+#define FIXED_MIN  ((fixed)0x8000)
 #endif
 
 #elif FP_SIGNED == 0
@@ -85,14 +85,14 @@ inline static fixed fixed_sum(fixed a, fixed b) {
     lfixed sum = (lfixed) a + (lfixed) b;
 
     /* Check for overflow and saturate if necessary */
-    return sum > ((fixed) FIXED_MAX) ? (fixed) FIXED_MAX : (fixed) sum;
+    return sum > FIXED_MAX ? FIXED_MAX : (fixed) sum;
 }
 
 inline static fixed fixed_sub(fixed a, fixed b) {
     lfixed sub = (lfixed) a - (lfixed) b;
 
     /* Check for underflow and saturate if necessary */
-    return sub < ((fixed) FIXED_MIN) ? (fixed) FIXED_MIN : (fixed) sub;
+    return sub < FIXED_MIN ? FIXED_MIN : (fixed) sub;
 }
 
 inline static fixed fixed_mult(fixed a, fixed b) {
